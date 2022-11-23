@@ -13,7 +13,6 @@ RUN npm run build
 #Run Steps
 FROM nginxinc/nginx-unprivileged  
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
+COPY --from=build-step /app/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8081:8081
 CMD ["nginx", "-g", "daemon off;"]
