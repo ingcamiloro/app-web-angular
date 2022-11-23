@@ -22,9 +22,9 @@ FROM nginxinc/nginx-unprivileged
 
 #### copy nginx conf
 
-COPY nginx.conf /etc/nginx/nginx.conf
+###COPY nginx.conf /etc/nginx/nginx.conf
 
-WORKDIR /code
+###WORKDIR /code
 
 #### copy artifact build from the 'build environment'
 COPY --from=build /app/dist .
