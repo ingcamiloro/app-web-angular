@@ -1,31 +1,21 @@
 #Build Steps
-FROM node:lts-alpine AS build
+FROM node:19.1.0 as build
 
-RUN mkdir /app
+# Set the working directory
 WORKDIR /app
 COPY . .
-
-#### install angular cli
-RUN npm install -g @angular/cli
-
-#### install project dependencies
 RUN npm install
-
-#### copy things
-
-
-#### generate build --prod
+# Generate the build of the application
 RUN npm run build --prod
 
-### STAGE 2: Run ###
-FROM nginxinc/nginx-unprivileged
+# Stage 2: Serve app with nginx server
+FROM nginx:1.17
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /code
 
-#### copy artifact build from the 'build environment'
-COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
+COPY --from=build /app/dist .
 
-#### don't know what this is, but seems cool and techy
+EXPOSE 8081:8081
 CMD ["nginx", "-g", "daemon off;"]
