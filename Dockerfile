@@ -14,8 +14,8 @@ RUN npm run build
 FROM nginxinc/nginx-unprivileged  
 RUN rm -rf /etc/nginx/nginx.conf.default && rm -rf /etc/nginx/conf.d/default.conf
 
-COPY /nginx/nginx.conf /etc/nginx/nginx.conf
-COPY /nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 
