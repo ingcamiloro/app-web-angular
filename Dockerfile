@@ -13,7 +13,8 @@ RUN npm install -g @angular/cli
 RUN npm install
 
 #### copy things
-COPY . .
+COPY . /app
+
 
 #### generate build --prod
 RUN npm run build
