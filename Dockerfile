@@ -1,12 +1,12 @@
 #Build Steps
 FROM node:19-alpine3.15 as build-step
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir /app-web-angular
+WORKDIR /app-web-angular
 RUN npm install -g @angular/cli
 COPY package.json /app
 RUN npm install
-COPY . /app
+COPY . /app-web-angular
 
 RUN npm run build
 
