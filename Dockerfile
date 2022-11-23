@@ -19,7 +19,5 @@ COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 ###RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 
-RUN chgrp -R 0 /var/cache/ /var/log/ /var/run/ && \ 
-    chmod -R g=u /var/cache/ /var/log/ /var/run/
 EXPOSE 8081:8081
 CMD ["nginx", "-g", "daemon off;"]
