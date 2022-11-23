@@ -12,4 +12,4 @@ RUN npm run build
 
 #Run Steps
 FROM nginxinc/nginx-unprivileged  
-COPY --from=build-step /app-web-angular/dist/app-web-angular /usr/share/nginx/html
+COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
