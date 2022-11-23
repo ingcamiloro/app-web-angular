@@ -10,7 +10,7 @@ RUN npm run build --prod
 
 # Stage 2: Serve app with nginx server
 FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+###COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /code
 
