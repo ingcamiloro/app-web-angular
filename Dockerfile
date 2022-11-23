@@ -11,7 +11,7 @@ COPY . /app
 RUN npm run build
 
 #Run Steps
-FROM nginx:1.23.2  
+FROM nginx:alpine
 COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 EXPOSE 8080:8080
