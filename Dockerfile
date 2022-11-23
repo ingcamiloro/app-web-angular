@@ -13,3 +13,4 @@ RUN npm run build
 #Run Steps
 FROM nginxinc/nginx-unprivileged  
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
