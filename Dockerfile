@@ -1,5 +1,5 @@
 #Build Steps
-FROM node:19.1.0 as build
+FROM node:lts-alpine AS build
 
 RUN mkdir /app
 WORKDIR /app
