@@ -22,7 +22,7 @@ RUN npm run build
 FROM nginxinc/nginx-unprivileged
 
 #### copy nginx conf
-COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+
 
 #### copy artifact build from the 'build environment'
 COPY --from=build /app/dist/app-web-angular /usr/share/nginx/html
