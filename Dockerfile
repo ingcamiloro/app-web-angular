@@ -1,20 +1,33 @@
 #Build Steps
 FROM node:19.1.0 as build
 
-# Set the working directory
+RUN mkdir /app
 WORKDIR /app
 COPY . .
+
+#### install angular cli
+RUN npm install -g @angular/cli
+
+#### install project dependencies
 RUN npm install
-# Generate the build of the application
+
+#### copy things
+
+
+#### generate build --prod
 RUN npm run build --prod
 
-# Stage 2: Serve app with nginx server
-FROM nginxinc/nginx-unprivileged 
-###COPY nginx.conf /etc/nginx/conf.d/default.conf
+### STAGE 2: Run ###
+FROM nginxinc/nginx-unprivileged
 
-WORKDIR /code
+#### copy nginx conf
 
-COPY --from=build /app/dist .
+###COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 8081:8081
+###WORKDIR /code
+
+#### copy artifact build from the 'build environment'
+COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
+
+#### don't know what this is, but seems cool and techy
 CMD ["nginx", "-g", "daemon off;"]
