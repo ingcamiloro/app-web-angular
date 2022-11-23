@@ -20,14 +20,11 @@ RUN npm run build --prod
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
 
-#### copy nginx conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
-###COPY nginx.conf /etc/nginx/nginx.conf
-
-###WORKDIR /code
+WORKDIR /code
 
 #### copy artifact build from the 'build environment'
-FROM nginxinc/nginx-unprivileged  
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 
 #### don't know what this is, but seems cool and techy
