@@ -27,7 +27,8 @@ FROM nginxinc/nginx-unprivileged
 ###WORKDIR /code
 
 #### copy artifact build from the 'build environment'
-COPY --from=build-step /app/dist/app-web-angular/ /usr/share/nginx/html
+FROM nginxinc/nginx-unprivileged  
+COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 
 #### don't know what this is, but seems cool and techy
 CMD ["nginx", "-g", "daemon off;"]
