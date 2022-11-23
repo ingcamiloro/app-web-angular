@@ -1,5 +1,5 @@
 #Build Steps
-FROM node:15.14.0 as build-step
+FROM node:19-alpine3.15 as build-step
 
 RUN mkdir /app
 WORKDIR /app
