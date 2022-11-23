@@ -11,8 +11,7 @@ COPY . /app
 RUN npm run build
 
 #Run Steps
-FROM nginx:alpine
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+FROM nginxinc/nginx-unprivileged  
 COPY --from=build-step /app/dist/app-web-angular /usr/share/nginx/html
 EXPOSE 8080:8080
 CMD ["nginx", "-g", "daemon off;"]
