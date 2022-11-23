@@ -28,4 +28,4 @@ FROM nginxinc/nginx-unprivileged
 COPY --from=build /app/dist/app-web-angular /usr/share/nginx/html
 
 #### don't know what this is, but seems cool and techy
-CMD ["nginx", "-g", "daemon off;"]
+####CMD ["nginx", "-g", "daemon off;"]
